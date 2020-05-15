@@ -1,0 +1,36 @@
+CLASS cl_w205o_string_helper DEFINITION
+  PUBLIC
+  FINAL
+  CREATE PUBLIC .
+
+  PUBLIC SECTION.
+    METHODS reverse
+      IMPORTING
+        i_str           TYPE string
+      RETURNING
+        VALUE(r_revstr) TYPE string.
+  PROTECTED SECTION.
+  PRIVATE SECTION.
+ENDCLASS.
+
+
+
+CLASS cl_w205o_string_helper IMPLEMENTATION.
+
+  METHOD reverse.
+    DATA : l_len TYPE i.
+
+    l_len = strlen( i_str ).
+    IF l_len = 0.
+      EXIT.
+    ENDIF.
+    DO.
+      l_len = l_len - 1.
+      CONCATENATE r_revstr i_str+l_len(1) INTO r_revstr.
+      IF l_len = 0.
+        EXIT.
+      ENDIF.
+    ENDDO.
+  ENDMETHOD.
+
+ENDCLASS.
